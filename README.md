@@ -2,29 +2,34 @@
 
 # Setup
 
-### Python Virtual Environment
+## Python Virtual Environment
 
-Arrancar entorno:
+Crear entorno:
 
     python3 -m venv .venv
 
-Activa:
+Entrar en el entorno:
 
-    . bin/activate
+    source .venv/bin/activate
+
+**En caso de que no se active el entorno, es por que no esta creado, el entorno esta como excepcion en el .gitignore**
+
+Instala el Flask:
+
+    pip install -U flask
+
+Para generar el fichero de requisitos:
+
+    pip freeze > requirements.txt
 
 Instala el requisito:
 
     pip install -r requirements.txt
 
-Para generar el fichero de requisitos:
-
-    pip freeze > requirements.txt
 Para salir del entorno Python:
 
     deactivate
 
-# Para arrancar aplicacion:
-## Hola Mundo:
+## Para arrancar aplicacion:
     flask --app hello.py run
-## Y para el Templates:
-    flask --app hello_Templates.py run
+
