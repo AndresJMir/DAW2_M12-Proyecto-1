@@ -1,0 +1,14 @@
+<!doctype html>
+<title>Hello from Flask</title>
+<head>
+  <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+<body>
+
+{% if name %}
+  <h1>Hello {{ name }}!</h1>
+{% else %}
+  <h1>Hello, World!</h1>
+{% endif %}
+<div class="pato"><img src="/static/pato.jpg"></div>
+</body>
