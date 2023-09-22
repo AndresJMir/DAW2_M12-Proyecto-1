@@ -18,8 +18,8 @@ Para generar el fichero de requisitos:
 Para salir del entorno Python:
     deactivate
 
-#Para arrancar aplicacion:
-##Hola Mundo:
+# Para arrancar aplicacion:
+## Hola Mundo:
     flask --app hello.py run
-##Y para el Templates:
+## Y para el Templates:
     flask --app hello_Templates.py run
