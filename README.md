@@ -33,3 +33,7 @@ Para salir del entorno Python:
 ## Para arrancar aplicacion:
     flask --app hello.py run
 
+## Base de datos
+
+Creamos un archivo llamado **schema.sql** y en SQLite creamos una Base de Datos y ejecutamos el codigo SQL del archivo y guardamos la Base de datos en un archivo llamado **database.db**.
+
