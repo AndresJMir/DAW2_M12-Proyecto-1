@@ -21,5 +21,33 @@
 			</tr>
 		{% endfor %}
 	</table>
+	<br/><h1>Tabla Pro</h1>
+	<table class="pro_tabla">
+		<tr>
+			<th>ID</th>
+			<th>NOM</th>
+			<th>description</th>
+			<th>Foto</th>
+			<th>price</th>
+			<th>category_id</th>
+			<th>seller_id</th>
+			<th>created</th>
+			<th>updated</th>
+		</tr>
+		{% for product in products %}
+		<tr>
+			<td>{{ product['id'] }}</a></td>
+			<td>{{ product['title'] }}</a></td>
+			<td>{{ product['description'] }}</a></td>
+			<td>{{ product['photo'] }}</a></td>
+			<td>{{ product['price'] }}</a></td>
+			<td>{{ product['category_id'] }}</a></td>
+			<td>{{ product['seller_id'] }}</a></td>
+			<td>{{ product['created'] }}</a></td>
+			<td>{{ product['updated'] }}</a></td>
+		</tr>
+	{% endfor %}
+	</table><br/>
+	<a class="action" href="{{url_for('products_create')}}">Crear producte</a>
 </body>
 </html>
