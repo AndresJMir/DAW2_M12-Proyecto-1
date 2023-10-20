@@ -33,6 +33,7 @@
 			<th>seller_id</th>
 			<th>created</th>
 			<th>updated</th>
+			<th>Acciones</th>
 		</tr>
 		{% for product in products %}
 		<tr>
@@ -45,9 +46,12 @@
 			<td>{{ product['seller_id'] }}</a></td>
 			<td>{{ product['created'] }}</a></td>
 			<td>{{ product['updated'] }}</a></td>
+			<td><a class="action" href="{{ url_for('products_update', id = product['id'])}}">Actualizar producte</a></a></td>
+			<td><a class="action" href="{{url_for('products_delete', id = product['id'])}}">Borrar producte</a></a></td>
 		</tr>
 	{% endfor %}
 	</table><br/>
+    <a class="action" href="{{url_for('products_list')}}">Ver listado</a>
 	<a class="action" href="{{url_for('products_create')}}">Crear producte</a>
 </body>
 </html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <title>title</title>
+</head>
+<body>
+    <h1>Tabla Pro</h1>
+	<br/><h1>Formulario del producto a editar</h1><br/>
+	<form method="POST" action="{{ url_for('products_update', id = product['id'])}}">
+
+        <label for="title">Title:</label>
+        <input value="{{ product['title'] }}" type="text" id="title" name="title" >
+        <br>
+        <label for="description">Descripcion:</label>
+        <input value="{{ product['description'] }}"  type="text" id="description" name="description" />
+        <br>
+        <label for="photo">Photo:</label>
+        <input value="{{ product['photo'] }}" type="text" id="photo" name="photo" accept="image/png, image/jpeg" />
+        <br>
+        <label for="price">Price:</label>
+        <input value="{{ product['price'] }}" type="text" id="price" name="price">
+        <br>
+        <label for="category_id">Category ID:</label>
+        <input value="{{ product['category_id'] }}" type="text" id="category_id" name="category_id">
+        <br><!--
+        <label for="seller_id">Seller ID:</label>
+        <input value="{{ product['seller_id'] }}" type="text" id="seller_id" name="seller_id">
+        <br>-->
+        <input type="submit" value="Update Product">
+    </form>
+    <a class="action" href="{{url_for('products_list')}}">Ver listado</a>
+</body>
+</html>

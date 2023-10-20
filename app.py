@@ -1,4 +1,4 @@
-from flask import Flask, request, abort, render_template, redirect, url_for
+from flask import Flask, request, abort, render_template, redirect, url_for, flash
 import sqlite3
 
 app = Flask(__name__)
@@ -24,7 +24,6 @@ def products_list():
         #res = con.execute("SELECT id, title, price FROM products ORDER BY id ASC")
         res = con.execute("SELECT * FROM products ORDER BY id ASC")
         products = res.fetchall()
-
     return render_template('products/list.html', products = products)
 
 # Controlador
@@ -40,7 +39,6 @@ def products_create():
 		# TODO Generate data
 		# TODO Save data (database insert)
 		# Redirect to list page
-
 		#Recibe del Post los datos
 		title = str(request.form['title'])
 		description = request.form['description']
@@ -62,7 +60,57 @@ def products_create():
 		# Not found response
 		abort(404)
 
+@app.route('/products/delete/<int:id>', methods=["GET", "POST"])
+def products_delete(id):
+	if request.method == 'POST':
+		return redirect(url_for('products_list'))
+	elif request.method == 'GET':
+		with get_db_connection() as con:
+			con.execute("DELETE FROM products WHERE id =?", (id,))
+			con.commit()
+			return redirect(url_for('products_list'))
+	else:
+	# Not found response
+		abort(404)
+
+
+@app.route('/products/update/<int:id>', methods=["GET", "POST"])
+def products_update(id):
+		if request.method == 'GET':
+			# Show form
+			with get_db_connection() as con:
+				res = con.execute("SELECT * FROM products WHERE id =?", (id,))
+				product = res.fetchone()
+				return render_template('products/update.html', product = product)
+		elif request.method == 'POST':
+			# Get POST data
+			#Recibe del Post los datos
+			title = str(request.form['title'])
+			description = request.form['description']
+			photo = request.form['photo']
+			price = float(request.form['price'])
+			category_id = request.form['category_id']
+			#seller_id = request.form['seller_id']
+			#Valida
+			if len(title) > 255 or len(title) == 0:
+				return render_template('products/list.html', "No se cumplen las condiciones")
+			else:
+				with get_db_connection() as ins:
+					inserte = """UPDATE products SET title =?, description =?, photo =?, price =?, category_id =?, updated = DATETIME('now') WHERE id =?"""
+					tupla = title, description, photo, price, category_id, id
+					ins = ins.execute(inserte, tupla)
+					#products = ins.fetchall()
+					return redirect(url_for('products_list'))
+
+        
+
+
+'''
 @app.route('/products/update/<int:id>')
 def products_update(id):
    # TODO Everything
     return
+
+'''
+# DELETE FROM * WHERE title='';
+# UPDATE 
